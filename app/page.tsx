@@ -11,6 +11,7 @@ import {
 import { Suspense } from "react";
 import ProductSkeleton from "./ProductSkeleton";
 import { sleep } from "@/lib/utils";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 const pageSize = 3;
 
@@ -24,14 +25,11 @@ async function Products({ page }: { page: number }) {
 
   await sleep(1000);
   return (
-    <>
-      <p>Showing {products.length} products</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-    </>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+    </div>
   );
 }
 
@@ -44,8 +42,8 @@ export default async function HomePage(props: { searchParams: SearchParams }) {
   const totalPages = Math.ceil(total / pageSize);
 
   return (
-    <main className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 ">Home</h1>
+    <main className="container mx-auto py-4">
+      <Breadcrumbs items={[{ label: "Products", href: "/" }]} />
 
       <Suspense key={page} fallback={<ProductSkeleton />}>
         <Products page={page} />

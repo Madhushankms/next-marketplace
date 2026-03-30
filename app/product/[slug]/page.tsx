@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -50,10 +51,18 @@ export default async function ProductPage({
     notFound();
   }
 
-  await sleep(5000);
+  const breadcrumbs = [
+    { label: "Products", href: "/" },
+    {
+      label: product.category?.name,
+      href: `/search/${product.category?.slug}`,
+    },
+    { label: product.name, href: `/product/${product.slug}`, active: true },
+  ];
 
   return (
-    <main className="container mx-auto p-4">
+    <main className="container mx-auto py-4">
+      <Breadcrumbs items={breadcrumbs} />
       <Card>
         <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="relative rounded-lg overflow-hidden h-50 md:h-100">
