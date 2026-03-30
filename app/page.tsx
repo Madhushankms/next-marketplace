@@ -3,7 +3,6 @@ import { prisma } from "@/lib/prisma";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -11,6 +10,7 @@ import {
 } from "@/components/ui/pagination";
 import { Suspense } from "react";
 import ProductSkeleton from "./ProductSkeleton";
+import { sleep } from "@/lib/utils";
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 const pageSize = 3;
 
@@ -22,7 +22,7 @@ async function Products({ page }: { page: number }) {
     take: pageSize,
   });
 
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  await sleep(1000);
   return (
     <>
       <p>Showing {products.length} products</p>
@@ -45,7 +45,7 @@ export default async function HomePage(props: { searchParams: SearchParams }) {
 
   return (
     <main className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">Home</h1>
+      <h1 className="text-3xl font-bold mb-6 ">Home</h1>
 
       <Suspense key={page} fallback={<ProductSkeleton />}>
         <Products page={page} />
