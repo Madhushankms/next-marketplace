@@ -14,7 +14,7 @@ import Link from "next/link";
 function ProductCard({ product }: { product: Product }) {
   return (
     <Link href={`/product/${product.slug}`}>
-      <Card className="pt-0 overflow-hidden min-h-[400px]">
+      <Card className="pt-0 overflow-hidden min-h-100">
         <div className="relative aspect-video">
           {product.image && (
             <Image

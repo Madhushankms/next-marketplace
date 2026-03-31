@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { ModeToggle } from "./theme-toggle";
-// import { ModeToggle } from "./mode-toggle";
+
 import { MobileNav } from "./mobile-nav";
-// import { SearchInput } from "./search-input";
+import { SearchInput } from "./search-input";
+
 // import AuthStatus from "./auth-status";
 // import { CartIndicator } from "./cart-indicator";
 
@@ -36,7 +37,9 @@ export function Navbar() {
           </div>
         </div>
 
-        <div className="block w-full mx-4 md:mx-8">{/* <SearchInput /> */}</div>
+        <div className="block w-full mx-4 md:mx-8">
+          <SearchInput />
+        </div>
 
         <div className="flex items-center gap-0">
           {/* <AuthStatus /> */}
